@@ -7,7 +7,7 @@ Shader "Hidden/Kvant/Tunnel/Line"
     {
         _PositionTex    ("-", 2D)       = ""{}
         _Color          ("-", Color)    = (1, 1, 1, 0.5)
-        _ColroAmp       ("-", Float)    = 1
+        _ColorAmp       ("-", Float)    = 1
     }
 
     CGINCLUDE
