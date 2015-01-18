@@ -517,11 +517,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 1
-  intensity: 5.0999999
+  intensity: 6
+  curveCoeff: .699999988
   chromaticAberration: 3.8900001
   axialAberration: 1.79999995
-  blur: 0
-  blurSpread: .75
   luminanceDependency: .569999993
   blurDistance: 2.42000008
   vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
@@ -878,6 +877,14 @@ Prefab:
     - target: {fileID: 423208, guid: a16f20a430a994a4d9ec05f7110c054e, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423150, guid: a16f20a430a994a4d9ec05f7110c054e, type: 2}
+      propertyPath: limitAngle.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423146, guid: a16f20a430a994a4d9ec05f7110c054e, type: 2}
+      propertyPath: limitAngle.x
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a16f20a430a994a4d9ec05f7110c054e, type: 2}
@@ -1385,7 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cabd69d9ede402e87e393acc6cb442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitAngle: {x: -45, y: -30, z: 0}
+  limitAngle: {x: -90, y: -30, z: 0}
   linkedTo: {fileID: 0}
 --- !u!1 &784172166
 GameObject:
@@ -2355,7 +2362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cabd69d9ede402e87e393acc6cb442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitAngle: {x: -45, y: 30, z: 0}
+  limitAngle: {x: -90, y: 30, z: 0}
   linkedTo: {fileID: 0}
 --- !u!1 &1504927761
 GameObject:

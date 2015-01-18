@@ -8,10 +8,9 @@ class VignettingEditor extends Editor
 		
   var mode : SerializedProperty;
   var intensity : SerializedProperty; // intensity == 0 disables pre pass (optimization)
+  var curveCoeff : SerializedProperty;
   var chromaticAberration : SerializedProperty;
   var axialAberration : SerializedProperty;
-  var blur : SerializedProperty; // blur == 0 disables blur pass (optimization)
-  var blurSpread : SerializedProperty;
   var blurDistance : SerializedProperty;
   var luminanceDependency : SerializedProperty;
 
@@ -20,10 +19,9 @@ class VignettingEditor extends Editor
 		
     mode = serObj.FindProperty ("mode");
     intensity = serObj.FindProperty ("intensity");
+    curveCoeff = serObj.FindProperty ("curveCoeff");
     chromaticAberration = serObj.FindProperty ("chromaticAberration");
     axialAberration = serObj.FindProperty ("axialAberration");
-    blur = serObj.FindProperty ("blur");
-    blurSpread = serObj.FindProperty ("blurSpread");
     luminanceDependency = serObj.FindProperty ("luminanceDependency");
     blurDistance = serObj.FindProperty ("blurDistance");
 	} 
@@ -34,9 +32,7 @@ class VignettingEditor extends Editor
     EditorGUILayout.LabelField("Simulates the common lens artifacts 'Vignette' and 'Aberration'", EditorStyles.miniLabel);
 
     EditorGUILayout.PropertyField (intensity, new GUIContent("Vignetting"));    
-    EditorGUILayout.PropertyField (blur, new GUIContent(" Blurred Corners"));    
-    if(blur.floatValue>0.0f)
-      EditorGUILayout.PropertyField (blurSpread, new GUIContent(" Blur Distance"));    
+    EditorGUILayout.Slider (curveCoeff, 0.1, 1.0, new GUIContent("Curve Coeff."));    
 
     EditorGUILayout.Separator ();
 

@@ -19,7 +19,7 @@ public class JitterJoint : MonoBehaviour
     void Awake()
     {
         originalRotation = transform.localRotation;
-        noiseSeed = new Vector3(Random.value, Random.value, Random.value) * Mathf.PI;
+        noiseSeed = new Vector3(Random.value, Random.value, Random.value) * Mathf.PI * 10;
         currentRotation = Quaternion.identity;
     }
 
