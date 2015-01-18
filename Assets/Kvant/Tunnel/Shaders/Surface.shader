@@ -11,7 +11,7 @@ Shader "Hidden/Kvant/Tunnel/Surface"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Tunnel" }
         Offset 1, 1
         
         CGPROGRAM

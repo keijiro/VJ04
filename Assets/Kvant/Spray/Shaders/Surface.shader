@@ -16,7 +16,7 @@ Shader "Hidden/Kvant/Spray/Surface"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Spray" }
         
         CGPROGRAM
 
