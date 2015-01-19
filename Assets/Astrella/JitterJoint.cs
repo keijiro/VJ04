@@ -3,7 +3,7 @@ using System.Collections;
 
 public class JitterJoint : MonoBehaviour
 {
-    public static float freq = 0.5f;
+    public static float freq = 0.7f;
 
     public Vector3 limitAngle;
     public JitterJoint linkedTo;
