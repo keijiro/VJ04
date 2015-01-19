@@ -30,6 +30,9 @@ public partial class Tunnel : MonoBehaviour
     [SerializeField] Color _lineColor = new Color(1, 1, 1, 0);
     [SerializeField] float _lineColorAmp = 1;
 
+    [SerializeField] float _contourHue = 0.0f;
+    [SerializeField] float _contourIntensity = 0.0f;
+
     [SerializeField] bool _debug;
 
     #endregion
@@ -87,6 +90,16 @@ public partial class Tunnel : MonoBehaviour
     public float lineColorAmp {
         get { return _lineColorAmp; }
         set { _lineColorAmp = value; }
+    }
+
+    public float contourHue {
+        get { return _contourHue; }
+        set { _contourHue = value; }
+    }
+
+    public float contourIntensity {
+        get { return _contourIntensity; }
+        set { _contourIntensity = value; }
     }
 
     #endregion
@@ -234,6 +247,21 @@ public partial class Tunnel : MonoBehaviour
         // Update the parameters for the surface/line shader.
         _surfaceMaterial1.SetColor("_Color", _surfaceColor);
         _surfaceMaterial2.SetColor("_Color", _surfaceColor);
+
+        if (_contourIntensity > 0.0f)
+        {
+            var contourParams = new Vector2(_contourHue, _contourIntensity);
+            _surfaceMaterial1.SetVector("_ContourParams", contourParams);
+            _surfaceMaterial2.SetVector("_ContourParams", contourParams);
+            _surfaceMaterial1.EnableKeyword("CONTOUR_ON");
+            _surfaceMaterial2.EnableKeyword("CONTOUR_ON");
+        }
+        else
+        {
+            _surfaceMaterial1.DisableKeyword("CONTOUR_ON");
+            _surfaceMaterial2.DisableKeyword("CONTOUR_ON");
+        }
+
         _lineMaterial.SetColor("_Color", _lineColor);
         _lineMaterial.SetFloat("_ColorAmp", _lineColorAmp);
 

@@ -28,6 +28,9 @@ public class TunnelEditor : Editor
     SerializedProperty propLineColor;
     SerializedProperty propLineColorAmp;
 
+    SerializedProperty propContourHue;
+    SerializedProperty propContourIntensity;
+
     SerializedProperty propDebug;
 
     void OnEnable()
@@ -48,6 +51,9 @@ public class TunnelEditor : Editor
         propSurfaceColor    = serializedObject.FindProperty("_surfaceColor");
         propLineColor       = serializedObject.FindProperty("_lineColor");
         propLineColorAmp    = serializedObject.FindProperty("_lineColorAmp");
+
+        propContourHue       = serializedObject.FindProperty("_contourHue");
+        propContourIntensity = serializedObject.FindProperty("_contourIntensity");
 
         propDebug           = serializedObject.FindProperty("_debug");
     }
@@ -83,6 +89,11 @@ public class TunnelEditor : Editor
         EditorGUILayout.PropertyField(propSurfaceColor);
         EditorGUILayout.PropertyField(propLineColor);
         EditorGUILayout.Slider(propLineColorAmp, 1.0f, 20.0f);
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.Slider(propContourHue, 0.0f, 1.0f);
+        EditorGUILayout.Slider(propContourIntensity, 0.0f, 1.0f);
 
         EditorGUILayout.Space();
 

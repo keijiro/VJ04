@@ -16,6 +16,8 @@ Shader "Hidden/Kvant/Tunnel/Surface"
         
         CGPROGRAM
 
+        #pragma multi_compile CONTOUR_OFF CONTOUR_ON
+
         #pragma surface surf Lambert vertex:vert addshadow finalcolor:envmap
         #pragma glsl
 
@@ -32,9 +34,11 @@ Shader "Hidden/Kvant/Tunnel/Surface"
         float4 _NormalTex_TexelSize;
 
         float4 _Color;
+        float2 _ContourParams;
 
         struct Input
         {
+            float3 worldPos;
             float3 viewDir;
             float3 worldNormal;
             float3 worldRefl;
@@ -80,8 +84,21 @@ Shader "Hidden/Kvant/Tunnel/Surface"
 
         void surf(Input IN, inout SurfaceOutput o)
         {
+        #ifdef CONTOUR_ON
+            // Contour color line.
+            float l = length(IN.worldPos.xz);
+            float a = fmod(l + _Time.y * 0.50, 7.0) > 6.95;
+            float b = fmod(l + _Time.y * 0.58, 8.0) > 7.95;
+            a *= fmod(IN.worldPos.y + _Time.y * 15, 40) > 20;
+            b *= fmod(IN.worldPos.y + _Time.y * 19, 40) > 20;
+            float3 c1 = float3(a, b, b);
+            float3 c2 = float3(b, b, a);
+
+            o.Albedo = _Color.rgb * (1.0 - _ContourParams.y);
+            o.Emission = lerp(c1, c2, _ContourParams.x) * _ContourParams.y * 50;
+        #else
             o.Albedo = _Color.rgb;
-            o.Alpha = 1;
+        #endif
         }
 
         ENDCG

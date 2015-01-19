@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &281095173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1872,6 +1872,8 @@ MonoBehaviour:
   _surfaceColor: {r: 1, g: 1, b: 1, a: .627451003}
   _lineColor: {r: 1, g: 0, b: 0, a: .690196097}
   _lineColorAmp: 2
+  _contourHue: 0
+  _contourIntensity: 0
   _debug: 0
   _kernelShader: {fileID: 4800000, guid: ef390bfe222ea4d9eb8e7adc72288e7a, type: 3}
   _surfaceShader: {fileID: 4800000, guid: f33edb5130bfa478388adbb7df3b9b8a, type: 3}
@@ -3330,7 +3332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1931937166
 MonoBehaviour:
   m_ObjectHideFlags: 0
