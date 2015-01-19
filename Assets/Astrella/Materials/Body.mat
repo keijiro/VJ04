@@ -40,6 +40,14 @@ Material:
         first:
           name: _Roughness
         second: 3
+      data:
+        first:
+          name: _Emission
+        second: 0
+      data:
+        first:
+          name: _Ghost
+        second: 0
     m_Colors:
       data:
         first:

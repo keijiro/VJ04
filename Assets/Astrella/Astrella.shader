@@ -1,4 +1,4 @@
-﻿Shader "VJ04/Bumped Specular"
+﻿Shader "VJ04/Astrella"
 {
     Properties
     {
@@ -9,6 +9,8 @@
         _BumpMap    ("Normalmap", 2D)               = "bump" {}
         _Fresnel    ("Fresnel Coefficient", float)  = 5
         _Roughness  ("Roughness", float)            = 1
+        _Emission   ("Emission", float)             = 0
+        _Ghost      ("Ghost", float)                = 0
     }
     SubShader
     {
@@ -30,15 +32,24 @@
         float _Shininess;
         float _Fresnel;
         float _Roughness;
+        float _Emission;
+        float _Ghost;
 
         struct Input
         {
+            float3 worldPos;
             float2 uv_MainTex;
             float2 uv_BumpMap;
             float3 viewDir;
             float3 worldRefl;
             INTERNAL_DATA
         };
+
+        // PRNG function.
+        float nrand(float2 uv)
+        {
+            return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453);
+        }
 
         // Decode an RGBM sample (Marmoset Skyshop's equation).
         float3 sample_rgbm(float4 c)
@@ -68,6 +79,9 @@
 
         void surf(Input IN, inout SurfaceOutput o)
         {
+            // Ghost effect.
+            clip(nrand(IN.uv_MainTex) - _Ghost);
+
             // Identical to the default bumped specular shader.
             float4 tex = tex2D(_MainTex, IN.uv_MainTex);
             o.Albedo = tex.rgb * _Color.rgb;
@@ -75,6 +89,7 @@
             o.Alpha = tex.a * _Color.a;
             o.Specular = _Shininess;
             o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
+            o.Emission = _Emission;
         }
 
         ENDCG

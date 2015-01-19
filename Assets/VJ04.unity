@@ -3123,7 +3123,7 @@ GameObject:
   - 4: {fileID: 1780367473}
   - 114: {fileID: 1780367472}
   m_Layer: 0
-  m_Name: Settings
+  m_Name: Global Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
