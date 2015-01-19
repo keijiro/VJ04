@@ -20,8 +20,14 @@ Shader "Hidden/Kvant/Spray/Surface"
         
         CGPROGRAM
 
-        #pragma surface surf Lambert vertex:vert
+        #pragma surface surf Lambert vertex:vert finalcolor:envmap
         #pragma glsl
+
+        // Global settings.
+        samplerCUBE _VJ04_EnvTex;
+        float _VJ04_Exposure;
+        float _VJ04_Fresnel;
+        float _VJ04_Roughness;
 
         sampler2D _PositionTex;
         sampler2D _RotationTex;
@@ -31,7 +37,9 @@ Shader "Hidden/Kvant/Spray/Surface"
 
         struct Input
         {
-            float dummy;
+            float3 viewDir;
+            float3 worldNormal;
+            float3 worldRefl;
         };
 
         // Quaternion multiplication.
@@ -69,6 +77,32 @@ Shader "Hidden/Kvant/Spray/Surface"
             // Apply the rotation and the scaling.
             v.vertex.xyz = rotate_vector(v.vertex.xyz, r) * s + p.xyz;
             v.normal = rotate_vector(v.normal, r);
+        }
+
+        // Decode an RGBM sample (Marmoset Skyshop's equation).
+        float3 sample_rgbm(float4 c)
+        {
+            float gray = unity_ColorSpaceGrey.r;
+            float4 IGL =
+                float4(19.35486, -87.468483312, -171.964060128, c.a) *
+                float4(gray, gray, gray, c.a) + 
+                float4(-3.6774, 43.73410608, 85.98176352, 0.0);
+            return c.rgb * dot(IGL.xyz, float3(c.a, IGL.w, c.a * IGL.w));
+        }
+
+        void envmap(Input IN, SurfaceOutput o, inout fixed4 color)
+        {
+            // Calculate the Fresnel reflection factor.
+            float3 n = normalize(IN.worldNormal);
+            float3 v = normalize(IN.viewDir);
+            float fr = pow(1.0f - dot(v, n), _VJ04_Fresnel);
+
+            // Look up the cubemap with the world reflection vector.
+            float4 refl = float4(IN.worldRefl, _VJ04_Roughness);
+            float3 c_refl = sample_rgbm(texCUBElod(_VJ04_EnvTex, refl));
+
+            // Mix the envmap
+            color.rgb += c_refl * _VJ04_Exposure * fr * _Color.a;
         }
 
         void surf(Input IN, inout SurfaceOutput o)

@@ -1849,7 +1849,7 @@ MonoBehaviour:
   _frequency: 3
   _bump: 18.8400002
   _warp: 4.6500001
-  _surfaceColor: {r: 1, g: 1, b: 1, a: 1}
+  _surfaceColor: {r: 1, g: 1, b: 1, a: .627451003}
   _lineColor: {r: 1, g: 0, b: 0, a: .690196097}
   _lineColorAmp: 2
   _debug: 0
@@ -1935,7 +1935,7 @@ MonoBehaviour:
   _noiseFrequency: .200000003
   _noiseSpeed: 0
   _noiseAnimation: 1
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _color: {r: .83088237, g: .83088237, b: .83088237, a: 1}
   _randomSeed: 8
   _debug: 0
   _kernelShader: {fileID: 4800000, guid: 5e5e161a3708e40119404232637809fc, type: 3}
@@ -3062,6 +3062,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultReflection: {fileID: 8900000, guid: 8d953c2aa797c4c78a23ef3f582ade3f, type: 2}
   defaultReflectionExposure: 1
+  defaultReflectionFresnel: 1
+  defaultReflectionRoughness: 0
 --- !u!4 &1780367473
 Transform:
   m_ObjectHideFlags: 0
