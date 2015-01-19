@@ -9,8 +9,7 @@
         _BumpMap    ("Normalmap", 2D)               = "bump" {}
         _Fresnel    ("Fresnel Coefficient", float)  = 5
         _Roughness  ("Roughness", float)            = 1
-        _Emission   ("Emission", float)             = 0
-        _Ghost      ("Ghost", float)                = 0
+        _Effects    ("Effects", float)              = 0
     }
     SubShader
     {
@@ -18,6 +17,7 @@
         
         CGPROGRAM
 
+        #pragma multi_compile FX_OFF FX_GHOST FX_SLICE
         #pragma surface surf BlinnPhong finalcolor:envmap
         #pragma target 3.0
         #pragma glsl
@@ -33,7 +33,7 @@
         float _Fresnel;
         float _Roughness;
         float _Emission;
-        float _Ghost;
+        float _Effects;
 
         struct Input
         {
@@ -79,8 +79,13 @@
 
         void surf(Input IN, inout SurfaceOutput o)
         {
+            #ifdef FX_GHOST
             // Ghost effect.
-            clip(nrand(IN.uv_MainTex) - _Ghost);
+            clip(nrand(IN.uv_MainTex) - _Effects);
+            #elif FX_SLICE
+            // Slice effect.
+            clip(fmod(IN.uv_MainTex.y + _Time.y * 0.1, 0.02) - 0.02 * _Effects);
+            #endif
 
             // Identical to the default bumped specular shader.
             float4 tex = tex2D(_MainTex, IN.uv_MainTex);

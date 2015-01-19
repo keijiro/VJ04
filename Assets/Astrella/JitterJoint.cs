@@ -15,6 +15,7 @@ public class JitterJoint : MonoBehaviour
     Quaternion originalRotation;
     Quaternion currentRotation;
     Vector3 noiseSeed;
+    float time;
 
     void Awake()
     {
@@ -31,9 +32,10 @@ public class JitterJoint : MonoBehaviour
         }
         else
         {
-            var rx = limitAngle.x * Mathf.PerlinNoise(freq * Time.time, noiseSeed.x);
-            var ry = limitAngle.y * Mathf.PerlinNoise(freq * Time.time, noiseSeed.y);
-            var rz = limitAngle.z * Mathf.PerlinNoise(freq * Time.time, noiseSeed.z);
+            time += Time.deltaTime * freq;
+            var rx = limitAngle.x * Mathf.PerlinNoise(time, noiseSeed.x);
+            var ry = limitAngle.y * Mathf.PerlinNoise(time, noiseSeed.y);
+            var rz = limitAngle.z * Mathf.PerlinNoise(time, noiseSeed.z);
             currentRotation = Quaternion.Euler(rx, ry, rz);
         }
         transform.localRotation = currentRotation * originalRotation;

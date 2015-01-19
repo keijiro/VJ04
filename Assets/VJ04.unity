@@ -2195,6 +2195,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1164475972}
+  - 114: {fileID: 1164475973}
   m_Layer: 0
   m_Name: Astrella
   m_TagString: Untagged
@@ -2216,6 +2217,21 @@ Transform:
   - {fileID: 142055900}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1164475973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1164475971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c608ec58584e349099ca0c3e438410ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostFx: 0
+  sliceFx: 0
+  emission: 0
+  jitterSpeed: .5
 --- !u!1 &1168887064
 GameObject:
   m_ObjectHideFlags: 0
