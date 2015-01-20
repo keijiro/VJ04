@@ -16,6 +16,7 @@ Shader "Hidden/Kvant/Tunnel/Surface"
         
         CGPROGRAM
 
+        #pragma multi_compile SLICE_OFF SLICE_ON
         #pragma multi_compile CONTOUR_OFF CONTOUR_ON
 
         #pragma surface surf Lambert vertex:vert addshadow finalcolor:envmap
@@ -35,6 +36,7 @@ Shader "Hidden/Kvant/Tunnel/Surface"
         float4 _NormalTex_TexelSize;
 
         float4 _Color;
+        float2 _SliceParams;
         float2 _ContourParams;
 
         struct Input
@@ -85,6 +87,10 @@ Shader "Hidden/Kvant/Tunnel/Surface"
 
         void surf(Input IN, inout SurfaceOutput o)
         {
+        #ifdef SLICE_ON
+            clip(frac(IN.worldPos.y * _SliceParams.x) - _SliceParams.y);
+        #endif
+
         #ifdef CONTOUR_ON
             // Contour color line.
             float l = length(IN.worldPos.xz);

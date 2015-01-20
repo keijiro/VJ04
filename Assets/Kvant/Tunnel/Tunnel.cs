@@ -30,6 +30,9 @@ public partial class Tunnel : MonoBehaviour
     [SerializeField] Color _lineColor = new Color(1, 1, 1, 0);
     [SerializeField] float _lineColorAmp = 1;
 
+    [SerializeField] float _sliceWidth = 1.0f;
+    [SerializeField] float _sliceRatio = 0.0f;
+
     [SerializeField] float _contourHue = 0.0f;
     [SerializeField] float _contourIntensity = 0.0f;
 
@@ -90,6 +93,16 @@ public partial class Tunnel : MonoBehaviour
     public float lineColorAmp {
         get { return _lineColorAmp; }
         set { _lineColorAmp = value; }
+    }
+
+    public float sliceWidth {
+        get { return _sliceWidth; }
+        set { _sliceWidth = value; }
+    }
+
+    public float sliceRatio {
+        get { return _sliceRatio; }
+        set { _sliceRatio = value; }
     }
 
     public float contourHue {
@@ -247,6 +260,20 @@ public partial class Tunnel : MonoBehaviour
         // Update the parameters for the surface/line shader.
         _surfaceMaterial1.SetColor("_Color", _surfaceColor);
         _surfaceMaterial2.SetColor("_Color", _surfaceColor);
+
+        if (_sliceRatio > 0.0f)
+        {
+            var sliceParams = new Vector2(1.0f / _sliceWidth, _sliceRatio);
+            _surfaceMaterial1.SetVector("_SliceParams", sliceParams);
+            _surfaceMaterial2.SetVector("_SliceParams", sliceParams);
+            _surfaceMaterial1.EnableKeyword("SLICE_ON");
+            _surfaceMaterial2.EnableKeyword("SLICE_ON");
+        }
+        else
+        {
+            _surfaceMaterial1.DisableKeyword("SLICE_ON");
+            _surfaceMaterial2.DisableKeyword("SLICE_ON");
+        }
 
         if (_contourIntensity > 0.0f)
         {
