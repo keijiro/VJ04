@@ -25,6 +25,7 @@ Shader "Hidden/Kvant/Spray/Surface"
 
         // Global settings.
         samplerCUBE _VJ04_EnvTex;
+        float4x4 _VJ04_EnvMatrix;
         float _VJ04_Exposure;
         float _VJ04_Fresnel;
         float _VJ04_Roughness;
@@ -98,8 +99,8 @@ Shader "Hidden/Kvant/Spray/Surface"
             float fr = pow(1.0f - dot(v, n), _VJ04_Fresnel);
 
             // Look up the cubemap with the world reflection vector.
-            float4 refl = float4(IN.worldRefl, _VJ04_Roughness);
-            float3 c_refl = sample_rgbm(texCUBElod(_VJ04_EnvTex, refl));
+            float3 refl = mul(_VJ04_EnvMatrix, float4(IN.worldRefl, 0)).xyz;
+            float3 c_refl = sample_rgbm(texCUBElod(_VJ04_EnvTex, float4(refl, _VJ04_Roughness)));
 
             // Mix the envmap
             color.rgb += c_refl * _VJ04_Exposure * fr * _Color.a;

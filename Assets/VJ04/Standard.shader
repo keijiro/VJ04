@@ -1,15 +1,12 @@
-﻿Shader "VJ04/Astrella"
+﻿Shader "VJ04/Standard"
 {
     Properties
     {
-        _Color      ("Main Color", Color)           = (1, 1, 1, 1)
+        _Color      ("Albedo", Color)               = (1, 1, 1, 1)
         _SpecColor  ("Specular Color", Color)       = (1, 1, 1, 1)
         _Shininess  ("Shininess", Range(0.03, 1))   = 0.078125
-        _MainTex    ("Base (RGB) Gloss (A)", 2D)    = "white" {}
-        _BumpMap    ("Normalmap", 2D)               = "bump" {}
         _Fresnel    ("Fresnel Coefficient", float)  = 5
         _Roughness  ("Roughness", float)            = 1
-        _Effects    ("Effects", float)              = 0
     }
     SubShader
     {
@@ -17,7 +14,6 @@
         
         CGPROGRAM
 
-        #pragma multi_compile FX_OFF FX_GHOST FX_SLICE
         #pragma surface surf BlinnPhong finalcolor:envmap
         #pragma target 3.0
         #pragma glsl
@@ -27,29 +23,16 @@
         float4x4 _VJ04_EnvMatrix;
         float _VJ04_Exposure;
 
-        sampler2D _MainTex;
-        sampler2D _BumpMap;
         float4 _Color;
         float _Shininess;
         float _Fresnel;
         float _Roughness;
-        float _Emission;
-        float _Effects;
 
         struct Input
         {
-            float2 uv_MainTex;
-            float2 uv_BumpMap;
             float3 viewDir;
             float3 worldRefl;
-            INTERNAL_DATA
         };
-
-        // PRNG function.
-        float nrand(float2 uv)
-        {
-            return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453);
-        }
 
         // Decode an RGBM sample (Marmoset Skyshop's equation).
         float3 sample_rgbm(float4 c)
@@ -70,34 +53,22 @@
             float fr = pow(1.0f - dot(v, n), _Fresnel);
 
             // Look up the cubemap with the world reflection vector.
-            float3 refl = mul(_VJ04_EnvMatrix, float4(WorldReflectionVector(IN, o.Normal), 0)).xyz;
+            float3 refl = mul(_VJ04_EnvMatrix, float4(IN.worldRefl, 0)).xyz;
             float3 c_refl = sample_rgbm(texCUBElod(_VJ04_EnvTex, float4(refl, _Roughness)));
 
             // Mix the envmap
-            color.rgb += c_refl * _VJ04_Exposure * fr * o.Gloss;
+            color.rgb += c_refl * _VJ04_Exposure * fr;
         }
 
         void surf(Input IN, inout SurfaceOutput o)
         {
-            #ifdef FX_GHOST
-            // Ghost effect.
-            clip(nrand(IN.uv_MainTex) - _Effects);
-            #elif FX_SLICE
-            // Slice effect.
-            clip(fmod(IN.uv_MainTex.y + _Time.y * 0.1, 0.02) - 0.02 * _Effects);
-            #endif
-
-            // Identical to the default bumped specular shader.
-            float4 tex = tex2D(_MainTex, IN.uv_MainTex);
-            o.Albedo = tex.rgb * _Color.rgb;
-            o.Gloss = tex.a;
-            o.Alpha = tex.a * _Color.a;
+            o.Albedo = _Color.rgb;
+            o.Alpha = _Color.a;
+            o.Gloss = 1;
             o.Specular = _Shininess;
-            o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
-            o.Emission = _Emission;
         }
 
         ENDCG
-    }
+    } 
     FallBack "Specular"
 }

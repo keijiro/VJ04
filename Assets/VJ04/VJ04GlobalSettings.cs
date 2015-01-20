@@ -12,6 +12,7 @@ public class VJ04GlobalSettings : MonoBehaviour
     void Update()
     {
         Shader.SetGlobalTexture("_VJ04_EnvTex", defaultReflection);
+        Shader.SetGlobalMatrix("_VJ04_EnvMatrix", transform.worldToLocalMatrix);
         Shader.SetGlobalFloat("_VJ04_Exposure", defaultReflectionExposure);
         Shader.SetGlobalFloat("_VJ04_Fresnel", defaultReflectionFresnel);
         Shader.SetGlobalFloat("_VJ04_Roughness", defaultReflectionRoughness);
