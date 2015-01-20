@@ -50,7 +50,7 @@ public partial class Spray : MonoBehaviour
     // Returns the actual number of particles.
     public int maxParticles {
         get {
-            if (_bulkMesh == null) return 0;
+            if (_bulkMesh == null || _bulkMesh.copyCount == 0) return 0;
             return (_maxParticles / _bulkMesh.copyCount + 1) * _bulkMesh.copyCount;
         }
     }
