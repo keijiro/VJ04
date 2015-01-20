@@ -357,7 +357,7 @@ GameObject:
   - 114: {fileID: 185536899}
   - 114: {fileID: 185536898}
   - 114: {fileID: 185536897}
-  - 114: {fileID: 185536902}
+  - 114: {fileID: 185536903}
   - 114: {fileID: 185536901}
   m_Layer: 0
   m_Name: Main Camera
@@ -507,7 +507,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  _ditherMode: 0
+  _ditherMode: 1
   shader: {fileID: 4800000, guid: dc9775b65c52747e69fc4c854c00d696, type: 3}
 --- !u!114 &185536898
 MonoBehaviour:
@@ -601,9 +601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1706284f9bbbb4e199374db583725bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _intensity: 1
+  _intensity: .100000001
   shader: {fileID: 4800000, guid: de782114409bf409495896cc089fbf82, type: 3}
---- !u!114 &185536902
+--- !u!114 &185536903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -611,13 +611,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 185536891}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7e173ad64f04789aff22ba3166a11d, type: 3}
+  m_Script: {fileID: 11500000, guid: 467abcd336862445ab3d47649788e7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorTint: {r: 0, g: 1, b: 0, a: 1}
-  blendRatio: 1
-  scaleFactor: 1
-  shader: {fileID: 4800000, guid: e074684ea6a7c45dba307ae86a894589, type: 3}
+  _intensity: .100000001
+  _shader: {fileID: 4800000, guid: d2bf6155d21f8480eb7c05cec002d77f, type: 3}
 --- !u!1 &241923123
 GameObject:
   m_ObjectHideFlags: 0
