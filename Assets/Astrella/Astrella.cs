@@ -21,6 +21,12 @@ public class Astrella : MonoBehaviour
     public ParticleSystem emitter;
     [Range(0, 1)] public float particleEmission = 0;
 
+    // (These properties are exposed only for communicating with Reaktor.)
+    public float GhostFx { set { ghostFx = value; } }
+    public float SliceFx { set { sliceFx = value; } }
+    public float Illuminate { set { illuminate = value; } }
+    public float ParticleEmission { set { particleEmission = value; } }
+
     #endregion
 
     #region Private Variables

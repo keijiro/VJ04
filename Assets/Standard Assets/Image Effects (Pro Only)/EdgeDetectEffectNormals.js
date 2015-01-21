@@ -24,6 +24,8 @@ class EdgeDetectEffectNormals extends PostEffectsBase {
 	public var edgesOnly : float = 0.0f;
 	public var edgesOnlyBgColor : Color = Color.white;
 
+    public function set_EdgesOnly (value : float) { edgesOnly = value; }
+
 	public var edgeDetectShader : Shader;
 	private var edgeDetectMaterial : Material = null;
 	private var oldMode : EdgeDetectMode = EdgeDetectMode.SobelDepthThin;

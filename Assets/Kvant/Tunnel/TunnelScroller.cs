@@ -10,8 +10,18 @@ namespace Kvant {
 [RequireComponent(typeof(Tunnel))]
 public class TunnelScroller : MonoBehaviour
 {
-    public float velocity = 2;
-    public float spin = 0.01f;
+    float _velocity = 20;
+    float _spin = 0.01f;
+
+    public float velocity {
+        get { return _velocity; }
+        set { _velocity = value; }
+    }
+
+    public float spin {
+        get { return _spin; }
+        set { _spin = value; }
+    }
 
     float position;
     float twist;
@@ -22,8 +32,8 @@ public class TunnelScroller : MonoBehaviour
 
         var step = tunnel.height * 2 / tunnel.stacks;
 
-        position += velocity * Time.deltaTime;
-        twist += spin * Time.deltaTime;
+        position += _velocity * Time.deltaTime;
+        twist += _spin * Time.deltaTime;
 
         transform.localPosition = transform.forward * -(position % step);
 
