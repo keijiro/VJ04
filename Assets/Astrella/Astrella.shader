@@ -81,7 +81,7 @@
         {
             #ifdef FX_GHOST
             // Ghost effect.
-            clip(nrand(IN.uv_MainTex) - _Effects);
+            clip(nrand(floor(IN.uv_MainTex * 50) / 50 + _Time.y) - _Effects);
             #elif FX_SLICE
             // Slice effect.
             clip(fmod(IN.uv_MainTex.y + _Time.y * 0.1, 0.02) - 0.02 * _Effects);
