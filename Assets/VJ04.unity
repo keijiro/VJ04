@@ -997,7 +997,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1931937167}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!114 &205839139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   offset:
     _control: 1
     _midiChannel: 16
-    _knobIndex: 18
+    _knobIndex: 17
     _noteNumber: 40
     _inputAxis: Jump
     _curve:
@@ -1142,8 +1142,8 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-  sensitivity: .949999988
-  decaySpeed: .5
+  sensitivity: .5
+  decaySpeed: 1
   showAudioOptions: 0
   headroom: 1
   dynamicRange: 17
@@ -2375,7 +2375,7 @@ Transform:
   m_Children:
   - {fileID: 1777903539}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &468214292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   offset:
     _control: 1
     _midiChannel: 16
-    _knobIndex: 21
+    _knobIndex: 20
     _noteNumber: 40
     _inputAxis: Jump
     _curve:
@@ -2791,11 +2791,11 @@ MonoBehaviour:
     - time: 0
       value: 1
       inSlope: 0
-      outSlope: -.949999988
+      outSlope: -.99000001
       tangentMode: 21
     - time: 1
-      value: .0500000007
-      inSlope: -.949999988
+      value: .00999999978
+      inSlope: -.99000001
       outSlope: 0
       tangentMode: 21
     m_PreInfinity: 2
@@ -2855,7 +2855,7 @@ MonoBehaviour:
   offset:
     _control: 1
     _midiChannel: 16
-    _knobIndex: 23
+    _knobIndex: 55
     _noteNumber: 40
     _inputAxis: Jump
     _curve:
@@ -4321,7 +4321,7 @@ Transform:
   m_Children:
   - {fileID: 487643354}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &1024922483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4393,7 +4393,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1931937167}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1046619884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4520,7 +4520,7 @@ MonoBehaviour:
   offset:
     _control: 1
     _midiChannel: 16
-    _knobIndex: 17
+    _knobIndex: 18
     _noteNumber: 40
     _inputAxis: Jump
     _curve:
@@ -4538,8 +4538,8 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-  sensitivity: .949999988
-  decaySpeed: .5
+  sensitivity: .5
+  decaySpeed: 1
   showAudioOptions: 0
   headroom: 1
   dynamicRange: 17
@@ -6528,7 +6528,7 @@ MonoBehaviour:
   offset:
     _control: 1
     _midiChannel: 16
-    _knobIndex: 20
+    _knobIndex: 21
     _noteNumber: 40
     _inputAxis: Jump
     _curve:
@@ -7981,8 +7981,8 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-  sensitivity: .949999988
-  decaySpeed: .5
+  sensitivity: .5
+  decaySpeed: 1
   showAudioOptions: 0
   headroom: 1
   dynamicRange: 17
@@ -8072,8 +8072,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1903399714}
-  - {fileID: 1046619883}
   - {fileID: 205839138}
+  - {fileID: 1046619883}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!1 &1936928923
