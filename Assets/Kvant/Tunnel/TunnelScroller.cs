@@ -35,9 +35,10 @@ public class TunnelScroller : MonoBehaviour
         position += _velocity * Time.deltaTime;
         twist += _spin * Time.deltaTime;
 
-        transform.localPosition = transform.forward * -(position % step);
+        var frac = position % step;
+        transform.localPosition = transform.forward * -frac;
 
-        tunnel.offset = Mathf.Floor(position / step) * step;
+        tunnel.offset = position - frac;
         tunnel.twist = twist;
     }
 }
