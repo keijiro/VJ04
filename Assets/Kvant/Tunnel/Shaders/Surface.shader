@@ -101,11 +101,10 @@ Shader "Hidden/Kvant/Tunnel/Surface"
             float3 c1 = float3(a, b, b);
             float3 c2 = float3(b, b, a);
 
-            o.Albedo = _Color.rgb * (1.0 - _ContourParams.y);
             o.Emission = lerp(c1, c2, _ContourParams.x) * _ContourParams.y * 50;
-        #else
-            o.Albedo = _Color.rgb;
         #endif
+
+            o.Albedo = _Color.rgb;
         }
 
         ENDCG
