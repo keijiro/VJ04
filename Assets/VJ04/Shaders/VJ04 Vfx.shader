@@ -11,6 +11,8 @@ Shader "Hidden/VJ04 Vfx"
     
     CGINCLUDE
 
+    #pragma multi_compile NOISE_OFF NOISE_ON
+
     #include "UnityCG.cginc"
     
     sampler2D _MainTex;
@@ -27,9 +29,13 @@ Shader "Hidden/VJ04 Vfx"
 
     float4 frag(v2f_img i) : SV_Target 
     {
+        #if NOISE_ON
         // Noise displacement.
         float r = (nrand(float2(i.uv.y * 2, _Time.x)) - 0.5) * 2;
         float d = r * _NoiseDisplace * step(_NoiseThreshold, abs(r));
+        #else
+        float d = 0;
+        #endif
 
         // Source color.
         float4 s = tex2D(_MainTex, i.uv + float2(d, 0));

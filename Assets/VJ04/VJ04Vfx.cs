@@ -42,10 +42,20 @@ public class VJ04Vfx : MonoBehaviour
 
         if (_noise > 0.01f || _invert > 0.01f || _whiteout > 0.01f)
         {
-            _material.SetFloat("_NoiseThreshold", Mathf.Clamp01(1.0f - _noise * 1.2f));
-            _material.SetFloat("_NoiseDisplace", 0.01f + Mathf.Pow(_noise, 3) * 0.1f);
+            if (_noise > 0.01f)
+            {
+                _material.EnableKeyword("NOISE_ON");
+                _material.SetFloat("_NoiseThreshold", Mathf.Clamp01(1.0f - _noise * 1.2f));
+                _material.SetFloat("_NoiseDisplace", 0.01f + Mathf.Pow(_noise, 3) * 0.1f);
+            }
+            else
+            {
+                _material.DisableKeyword("NOISE_ON");
+            }
+
             _material.SetFloat("_Invert", _invert);
             _material.SetFloat("_Whiteout", _whiteout);
+
             Graphics.Blit(source, destination, _material);
         }
         else
