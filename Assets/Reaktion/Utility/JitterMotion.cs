@@ -46,18 +46,23 @@ public class JitterMotion : MonoBehaviour
     Vector3 initialPosition;
     Quaternion initialRotation;
 
-    void Awake()
+    public void Reshake()
     {
-        timePosition = Random.value * 10;
-        timeRotation = Random.value * 10;
-
-        noiseVectors = new Vector2[6];
+        timePosition = Random.value * 100;
+        timeRotation = Random.value * 100;
 
         for (var i = 0; i < 6; i++)
         {
             var theta = Random.value * Mathf.PI * 2;
             noiseVectors[i].Set(Mathf.Cos(theta), Mathf.Sin(theta));
         }
+    }
+
+    void Awake()
+    {
+        noiseVectors = new Vector2[6];
+
+        Reshake();
 
         initialPosition = transform.localPosition;
         initialRotation = transform.localRotation;
