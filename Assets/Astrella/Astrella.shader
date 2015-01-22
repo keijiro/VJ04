@@ -13,7 +13,7 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Astrella" }
         
         CGPROGRAM
 

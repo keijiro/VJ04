@@ -34,9 +34,56 @@ ENDCG
 }
 
 SubShader {
+	Tags { "RenderType"="Astrella" }
+	Pass {
+CGPROGRAM
+#pragma multi_compile FX_OFF FX_GHOST FX_SLICE
+#pragma vertex vert
+#pragma fragment frag
+#pragma glsl
+#include "UnityCG.cginc"
+
+struct v2f {
+    float4 pos : SV_POSITION;
+    float2 uv : TEXCOORD0;
+	#ifdef UNITY_MIGHT_NOT_HAVE_DEPTH_TEXTURE
+    float2 depth : TEXCOORD1;
+	#endif
+};
+
+uniform float4 _MainTex_ST;
+uniform float _Effects;
+
+float nrand(float2 uv)
+{
+    return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+v2f vert( appdata_base v ) {
+    v2f o;
+    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+	o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+    UNITY_TRANSFER_DEPTH(o.depth);
+    return o;
+}
+
+fixed4 frag(v2f i) : SV_Target {
+#ifdef FX_GHOST
+    clip(nrand(floor(i.uv * 50) / 50 + _Time.y) - _Effects);
+#elif FX_SLICE
+    clip(fmod(i.uv.y + _Time.y * 0.1, 0.02) - 0.02 * _Effects);
+#endif
+    UNITY_OUTPUT_DEPTH(i.depth);
+}
+ENDCG
+	}
+}
+
+SubShader {
 	Tags { "RenderType"="Tunnel" }
 	Pass {
 CGPROGRAM
+#pragma multi_compile SLICE_OFF SLICE_ON
 #pragma vertex vert
 #pragma fragment frag
 #pragma glsl
@@ -44,11 +91,13 @@ CGPROGRAM
 
 sampler2D _PositionTex;
 float4 _PositionTex_TexelSize;
+float2 _SliceParams;
 
 struct v2f {
     float4 pos : SV_POSITION;
+    float3 wpos : TEXCOORD0;
 	#ifdef UNITY_MIGHT_NOT_HAVE_DEPTH_TEXTURE
-    float2 depth : TEXCOORD0;
+    float2 depth : TEXCOORD1;
 	#endif
 };
 
@@ -59,11 +108,15 @@ v2f vert( appdata_base v ) {
 
     v2f o;
     o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+    o.wpos = mul(_Object2World, v.vertex).xyz;
     UNITY_TRANSFER_DEPTH(o.depth);
     return o;
 }
 
 fixed4 frag(v2f i) : SV_Target {
+#ifdef SLICE_ON
+    clip(frac(i.wpos.y * _SliceParams.x) - _SliceParams.y);
+#endif
     UNITY_OUTPUT_DEPTH(i.depth);
 }
 ENDCG
