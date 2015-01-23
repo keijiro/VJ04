@@ -9,6 +9,11 @@ public class VJ04GlobalSettings : MonoBehaviour
     public float defaultReflectionFresnel = 3;
     public float defaultReflectionRoughness = 1;
 
+    void Start()
+    {
+        Screen.showCursor = false;
+    }
+
     void Update()
     {
         Shader.SetGlobalTexture("_VJ04_EnvTex", defaultReflection);
