@@ -65,7 +65,7 @@ Shader "Hidden/Kvant/Spray/Kernels"
 
         // Random position.
         float3 p = float3(nrand(uv, t + 1), nrand(uv, t + 2), nrand(uv, t + 3));
-        p = (p - float3(0.5)) * _EmitterSize + _EmitterPos;
+        p = (p - (float3)0.5) * _EmitterSize + _EmitterPos;
 
         // Throttling: discard the particle emission by adding offset.
         float4 offs = float4(1e10, 1e10, 1e10, -1) * (uv.x > _Config.x);
@@ -96,7 +96,7 @@ Shader "Hidden/Kvant/Spray/Kernels"
     {
         // Random vector.
         float3 v = float3(nrand(uv, 9), nrand(uv, 10), nrand(uv, 11));
-        v = (v - float3(0.5)) * 2;
+        v = (v - (float3)0.5) * 2;
 
         // Apply the spread parameter.
         v = lerp(_Direction.xyz, v, _Direction.w);

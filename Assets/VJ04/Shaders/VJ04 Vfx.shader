@@ -42,7 +42,7 @@ Shader "Hidden/VJ04 Vfx"
 
         // Invert and whiteout.
         float3 c = s.rgb;
-        c = float3(_Invert) + (1.0 - _Invert * 2) * c;
+        c = (float3)_Invert + c * (1.0 - _Invert * 2);
         c = min(c + _Whiteout, 1);
 
         return float4(c, s.a);
