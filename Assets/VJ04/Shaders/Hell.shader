@@ -27,9 +27,9 @@
         return o;
     }
 
-    half4 frag(v2f i) : COLOR
+    float4 frag(v2f i) : COLOR
     {
-        return i.color * _ColorAmp;
+        return float4(i.color.rgb * _ColorAmp, i.color.a);
     }
 
     ENDCG

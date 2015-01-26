@@ -38,9 +38,9 @@ Shader "Hidden/Kvant/Tunnel/Line"
         return o;
     }
 
-    half4 frag(v2f i) : COLOR
+    float4 frag(v2f i) : COLOR
     {
-        return _Color * _ColorAmp;
+        return float4(_Color.rgb * _ColorAmp, _Color.a);
     }
 
     ENDCG
