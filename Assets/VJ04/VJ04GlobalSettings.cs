@@ -11,7 +11,7 @@ public class VJ04GlobalSettings : MonoBehaviour
 
     void Start()
     {
-        Screen.showCursor = false;
+        if (!Application.isEditor) Screen.showCursor = false;
     }
 
     void Update()
