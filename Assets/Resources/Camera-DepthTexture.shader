@@ -40,6 +40,7 @@ CGPROGRAM
 #pragma multi_compile FX_OFF FX_GHOST FX_SLICE
 #pragma vertex vert
 #pragma fragment frag
+#pragma target 3.0
 #pragma glsl
 #include "UnityCG.cginc"
 
@@ -86,6 +87,7 @@ CGPROGRAM
 #pragma multi_compile SLICE_OFF SLICE_ON
 #pragma vertex vert
 #pragma fragment frag
+#pragma target 3.0
 #pragma glsl
 #include "UnityCG.cginc"
 
@@ -103,8 +105,8 @@ struct v2f {
 
 v2f vert( appdata_base v ) {
     float2 uv1 = v.texcoord;
-    uv1 += _PositionTex_TexelSize.xy * 0.5;
-    v.vertex.xyz += tex2D(_PositionTex, uv1).xyz;
+    uv1 += _PositionTex_TexelSize * 0.5;
+    v.vertex.xyz += tex2Dlod(_PositionTex, float4(uv1, 0, 0)).xyz;
 
     v2f o;
     o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
@@ -129,6 +131,7 @@ SubShader {
 CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
+#pragma target 3.0
 #pragma glsl
 #include "UnityCG.cginc"
 
@@ -166,8 +169,8 @@ v2f vert(appdata_base v)
 {
     float2 uv = v.texcoord + _BufferOffset;
 
-    float4 p = tex2D(_PositionTex, uv);
-    float4 r = tex2D(_RotationTex, uv);
+    float4 p = tex2Dlod(_PositionTex, float4(uv, 0, 0));
+    float4 r = tex2Dlod(_RotationTex, float4(uv, 0, 0));
 
     // Get the scale factor from life (p.w) and scale (r.w).
     float s = lerp(_ScaleParams.x, _ScaleParams.y, r.w);

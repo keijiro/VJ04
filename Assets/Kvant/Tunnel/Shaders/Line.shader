@@ -27,11 +27,10 @@ Shader "Hidden/Kvant/Tunnel/Line"
 
     v2f vert(appdata_base v)
     {
-        float2 uv = v.texcoord.xy;
-        uv += _PositionTex_TexelSize.xy * 0.5;
+        float2 uv = v.texcoord + _PositionTex_TexelSize / 2;
 
         float4 pos = v.vertex;
-        pos.xyz += tex2D(_PositionTex, uv).xyz;
+        pos.xyz += tex2Dlod(_PositionTex, float4(uv, 0, 0)).xyz;
 
         v2f o;
         o.position = mul(UNITY_MATRIX_MVP, pos);

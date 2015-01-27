@@ -21,6 +21,7 @@ Shader "Hidden/Kvant/Spray/Surface"
         CGPROGRAM
 
         #pragma surface surf Lambert vertex:vert finalcolor:envmap
+        #pragma target 3.0
         #pragma glsl
 
         // Global settings.
@@ -65,8 +66,8 @@ Shader "Hidden/Kvant/Spray/Surface"
         {
             float2 uv = v.texcoord + _BufferOffset;
 
-            float4 p = tex2D(_PositionTex, uv);
-            float4 r = tex2D(_RotationTex, uv);
+            float4 p = tex2Dlod(_PositionTex, float4(uv, 0, 0));
+            float4 r = tex2Dlod(_RotationTex, float4(uv, 0, 0));
 
             // Get the scale factor from life (p.w) and scale (r.w).
             float s = lerp(_ScaleParams.x, _ScaleParams.y, r.w);

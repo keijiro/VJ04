@@ -20,6 +20,7 @@ Shader "Hidden/Kvant/Tunnel/Surface"
         #pragma multi_compile CONTOUR_OFF CONTOUR_ON
 
         #pragma surface surf Lambert vertex:vert addshadow finalcolor:envmap
+        #pragma target 3.0
         #pragma glsl
 
         // Global settings.
@@ -55,8 +56,8 @@ Shader "Hidden/Kvant/Tunnel/Surface"
             uv1 += _PositionTex_TexelSize.xy * 0.5;
             uv2 += _NormalTex_TexelSize.xy * 0.5;
 
-            v.vertex.xyz += tex2D(_PositionTex, uv1).xyz;
-            v.normal = tex2D(_NormalTex, uv2).xyz;
+            v.vertex.xyz += tex2Dlod(_PositionTex, float4(uv1, 0, 0)).xyz;
+            v.normal = tex2Dlod(_NormalTex, float4(uv2, 0, 0)).xyz;
         }
 
         // Decode an RGBM sample (Marmoset Skyshop's equation).

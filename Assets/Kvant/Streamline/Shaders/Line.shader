@@ -43,10 +43,10 @@ Shader "Hidden/Kvant/Streamline/Line"
     {
         v2f o;
 
-        float2 uv = v.texcoord.xy + _PositionTex1_TexelSize.xy / 2;
+        float2 uv = v.texcoord + _PositionTex1_TexelSize / 2;
 
-        float4 p1 = tex2D(_PositionTex1, uv);
-        float4 p2 = tex2D(_PositionTex2, uv);
+        float4 p1 = tex2Dlod(_PositionTex1, float4(uv, 0, 0));
+        float4 p2 = tex2Dlod(_PositionTex2, float4(uv, 0, 0));
         float sw = v.position.x;
 
         if (p1.w < 0)
