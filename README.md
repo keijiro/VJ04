@@ -20,13 +20,13 @@ Control Guide
 
 There are several parameters to control the behavior of *VJ04*. These
 parameters can be checked on the Reaktion window that is opened from the
-menu “Window” -> “Reaktion”.
+menu “Window” - “Reaktion”.
 
 ![Reaktion Window](http://keijiro.github.io/VJ04/Reaktion.png)
 
-To check the MIDI CC number that is assigned to each parameter, push the
-“Select” button in the Reaktion window. It changes the current selection
-of objects, and then the MIDI settings are shown on the inspector.
+To check MIDI CC number assigned to each parameter, push the “Select”
+button in the Reaktion window. It changes the current selection of objects,
+and then the MIDI settings are shown on the inspector.
 
 ![Inspector](http://keijiro.github.io/VJ04/Inspector.png)
 
