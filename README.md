@@ -31,3 +31,14 @@ window. It changes the current selection of objects, and then the MIDI
 settings are shown on the inspector.
 
 ![Inspector](http://keijiro.github.io/VJ04/Inspector.png)
+
+Acknowledgements
+----------------
+
+The files under the “sIBL Archive” directory are provided by sIBL Archive. See
+[their web site][sIBL] for further details.
+
+[sIBL]: http://www.hdrlabs.com/sibl/archive.html
+
+The files under the “Astrella” and “Standard Assets” directory are provided by
+Unity as sample materials.
