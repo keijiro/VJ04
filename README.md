@@ -1,8 +1,8 @@
 VJ04
 ====
 
-*VJ04* is an interactive visual software, which was originally made as the
-visuals for the live performance at Channel X.
+*VJ04* is an interactive software,which was originally made as visuals for the
+live performance at Channel X.
 
 ![Screenshot](http://keijiro.github.io/VJ04/Screenshot.png)
 
@@ -12,9 +12,10 @@ System Requirements
 -------------------
 
 - Unity Pro
+- Mac OS X or Windows system
 - MIDI controllers
 
-*VJ04* supports both Windows and Mac OS X, but MIDI controllers are available
+*VJ04* supports both Mac OS X and Windows, but MIDI controllers are available
 only on OS X.
 
 Control Guide
