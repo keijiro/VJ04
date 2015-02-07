@@ -6,7 +6,7 @@ live performance at Channel X.
 
 ![Screenshot](http://keijiro.github.io/VJ04/Screenshot.png)
 
-[YouTube](https://www.youtube.com/watch?v=jLmbjudThlA)
+[See the video on YouTube](https://www.youtube.com/watch?v=jLmbjudThlA)
 
 System Requirements
 -------------------
