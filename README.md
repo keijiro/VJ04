@@ -1,7 +1,7 @@
 VJ04
 ====
 
-*VJ04* is an interactive software,which was originally made as visuals for the
+*VJ04* is an interactive software, which was originally made as visuals for the
 live performance at Channel X.
 
 ![Screenshot](http://keijiro.github.io/VJ04/Screenshot.png)
