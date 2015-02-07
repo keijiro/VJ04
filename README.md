@@ -24,7 +24,7 @@ menu “Window” - “Reaktion”.
 
 ![Reaktion Window](http://keijiro.github.io/VJ04/Reaktion.png)
 
-To check MIDI CC number assigned to each parameter, push the “Select”
+To check the MIDI CC number assigned to each parameter, push the “Select”
 button in the Reaktion window. It changes the current selection of objects,
 and then the MIDI settings are shown on the inspector.
 
