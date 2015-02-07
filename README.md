@@ -13,23 +13,20 @@ System Requirements
 
 - Unity Pro
 - Mac OS X or Windows system
-- MIDI controllers
-
-*VJ04* supports both Mac OS X and Windows, but MIDI controllers are available
-only on OS X.
+- MIDI controller (supported only on OS X)
 
 Control Guide
 -------------
 
-*VJ04* has many parameters which is controlled with MIDI CC messages. These
-parameters can be checked on the Reaktion window, which is opened from the
+There are several parameters to control the behavior of *VJ04*. These
+parameters can be checked on the Reaktion window that is opened from the
 menu “Window” -> “Reaktion”.
 
 ![Reaktion Window](http://keijiro.github.io/VJ04/Reaktion.png)
 
-To check the CC number of each parameter, push the “Select” button in the
-window. It changes the current selection of objects, and then the MIDI
-settings are shown on the inspector.
+To check the MIDI CC number that is assigned to each parameter, push the
+“Select” button in the Reaktion window. It changes the current selection
+of objects, and then the MIDI settings are shown on the inspector.
 
 ![Inspector](http://keijiro.github.io/VJ04/Inspector.png)
 
